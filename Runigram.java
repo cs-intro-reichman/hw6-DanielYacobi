@@ -91,7 +91,7 @@ public class Runigram {
 		Color[][] flipped = new Color[image.length][image[0].length];
 		for (int i = 0; i < flipped.length; i++) {
 			for (int j = 0; j < flipped[i].length; j++) {
-				flipped[i][j] = image[i][image.length-1-j];
+				flipped[i][j] = image[i][image[i].length - 1 - j];
 			}
 		}
 		return flipped;
@@ -104,7 +104,7 @@ public class Runigram {
 		Color[][] flipped = new Color[image.length][image[0].length];
 		for (int i = 0; i < flipped.length; i++) {
 			for (int j = 0; j < flipped[i].length; j++) {
-				flipped[i][j] = image[image[i].length-1-i][j];
+				flipped[i][j] = image[image.length - 1 - i][j];
 			}
 		}
 		return flipped;
