@@ -47,12 +47,6 @@ public class ColorDemo {
 			                         { black, white, black, white } ,
 			                         { white, black, white, black } ,
 		                           };
-		for (int i = 0; i < miniChessBoard.length; i++) {
-			for (int j = 0; j < miniChessBoard[i].length; j++) {
-				print(miniChessBoard[i][j]);
-			}
-			System.out.println();
-		}
 	}
 
     /**
