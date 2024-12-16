@@ -4,14 +4,11 @@ import java.awt.Color;
 public class Runigram {
 
 	public static void main(String[] args) {
-	    
-		//// Hide / change / add to the testing code below, as needed.
-		
+
 		// Tests the reading and printing of an image:	
 		Color[][] tinypic = read("tinypic.ppm");
 		print(tinypic);
 		System.out.println();
-		print(grayScaled(tinypic));
 
 		// Creates an image which will be the result of various
 		// image processing operations:
@@ -28,9 +25,6 @@ public class Runigram {
 		System.out.println();
 		print(image2);
 		*/
-
-		//// Write here whatever code you need in order to test your work.
-		//// You can continue using the image array.
 	}
 
 	/** Returns a 2D array of Color values, representing the image data
@@ -53,7 +47,7 @@ public class Runigram {
 				int red = in.readInt();
 				int green = in.readInt();
 				int blue = in.readInt();
-				image[i][j] = new Color(red, green, blue); 
+				image[i][j] = new Color(red, green, blue);  
 			}
 		}
 		return image;
@@ -74,11 +68,9 @@ public class Runigram {
 	// For example, to check that some image processing function works correctly,
 	// we can apply the function and then use this function to print the resulting image.
 	private static void print(Color[][] image) {
-		//// Replace this comment with your code
-		//// Notice that all you have to so is print every element (i,j) of the array using the print(Color) function.
 		for (int i = 0; i < image.length; i++) {
 			for (int j = 0; j < image[i].length; j++) {
-				print(image[i][j]);
+				print(image[i][j]); //uses the previous function and prints current element
 			}
 			System.out.println();
 		}
@@ -91,7 +83,7 @@ public class Runigram {
 		Color[][] flipped = new Color[image.length][image[0].length];
 		for (int i = 0; i < flipped.length; i++) {
 			for (int j = 0; j < flipped[i].length; j++) {
-				flipped[i][j] = image[i][image[i].length - 1 - j];
+				flipped[i][j] = image[i][image[i].length - 1 - j]; //flips the row
 			}
 		}
 		return flipped;
@@ -104,7 +96,7 @@ public class Runigram {
 		Color[][] flipped = new Color[image.length][image[0].length];
 		for (int i = 0; i < flipped.length; i++) {
 			for (int j = 0; j < flipped[i].length; j++) {
-				flipped[i][j] = image[image.length - 1 - i][j];
+				flipped[i][j] = image[image.length - 1 - i][j]; //flips the column
 			}
 		}
 		return flipped;
@@ -117,9 +109,9 @@ public class Runigram {
 		int red = pixel.getRed();
 		int green = pixel.getGreen();
 		int blue = pixel.getBlue();
-		int lum = (int)(0.299 * red + 0.587 * green + 0.114 * blue);
-		Color gray = new Color(lum, lum, lum);
-		return gray;
+		int lum = (int)(0.299 * red + 0.587 * green + 0.114 * blue); //formula
+		Color fiftyShadesOfGray = new Color(lum, lum, lum); //sorry
+		return fiftyShadesOfGray;
 	}
 	
 	/**
@@ -129,7 +121,7 @@ public class Runigram {
 		Color[][] grayed = new Color[image.length][image[0].length];
 		for (int i = 0; i < grayed.length; i++) {
 			for (int j = 0; j < grayed[i].length; j++) {
-				grayed[i][j] = luminance(image[i][j]);
+				grayed[i][j] = luminance(image[i][j]); //uses previous function
 			}
 		}
 		return grayed;
@@ -140,8 +132,15 @@ public class Runigram {
 	 * The image is scaled (resized) to have the given width and height.
 	 */
 	public static Color[][] scaled(Color[][] image, int width, int height) {
-		//// Replace the following statement with your code
-		return null;
+		Color[][] scaledImage = new Color[height][width];
+		double row = (double)image.length / height; //(h0 / h)
+		double column = (double)image[0].length / width; //(w0 / w)
+		for (int i = 0; i < scaledImage.length; i++) {
+			for (int j = 0; j < scaledImage[i].length; j++) {
+				scaledImage[i][j] = image[(int)(i * row)][(int)(j * column)]; //formula
+			}
+		}
+		return scaledImage;
 	}
 	
 	/**

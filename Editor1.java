@@ -17,14 +17,15 @@ public class Editor1 {
 		// Reads the input image and creates an empty output image
 		Color[][] imageIn = Runigram.read(fileName);	
 		Color[][] imageOut = null;	
-		// Applies the specified image processing function										
+		// Applies the specified image processing function		
+		/* */								
 		if (action.equals("fh")) {
 			imageOut = Runigram.flippedHorizontally(imageIn);
 		} else if (action.equals("fv")) {
 			imageOut = Runigram.flippedVertically(imageIn);
 		} else if (action.equals("gs")) {
 			imageOut = Runigram.grayScaled(imageIn);
-		}
+		} 
 		// Creates a canvas in which both images will be displayed, one after the other.
 		// Next, displays the input image, and pauses for a few seconds. 
 		// Finally, displays the output image.
