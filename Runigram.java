@@ -9,22 +9,6 @@ public class Runigram {
 		Color[][] tinypic = read("tinypic.ppm");
 		print(tinypic);
 		System.out.println();
-
-		// Creates an image which will be the result of various
-		// image processing operations:
-		/* 
-		Color[][] image;
-
-		// Tests the horizontal flipping of an image:
-		image = flippedHorizontally(tinypic);
-		System.out.println();
-		print(image);
-		
-		Color[][] image2;
-		image2 = flippedVertically(tinypic);
-		System.out.println();
-		print(image2);
-		*/
 	}
 
 	/** Returns a 2D array of Color values, representing the image data
@@ -150,8 +134,12 @@ public class Runigram {
 	 * values in the two input color.
 	 */
 	public static Color blend(Color c1, Color c2, double alpha) {
-		//// Replace the following statement with your code
-		return null;
+		//uses formula to calculate 3 different v values
+		int blendedRed = (int)(alpha * c1.getRed() + (1 - alpha) * c2.getRed());
+		int blendedGreen = (int)(alpha * c1.getGreen() + (1 - alpha) * c2.getGreen());
+		int blendedBlue = (int)(alpha * c1.getBlue() + (1 - alpha) * c2.getBlue());
+		Color blended = new Color(blendedRed, blendedGreen, blendedBlue);
+		return blended;
 	}
 	
 	/**
@@ -161,8 +149,14 @@ public class Runigram {
 	 * The two images must have the same dimensions.
 	 */
 	public static Color[][] blend(Color[][] image1, Color[][] image2, double alpha) {
-		//// Replace the following statement with your code
-		return null;
+		//assumed that image1,image2 have the same dimentions
+		Color[][] blended = new Color[image1.length][image1[0].length]; //images have same length
+		for (int i = 0; i < blended.length; i++) {
+			for (int j = 0; j < blended[i].length; j++) {
+				blended[i][j] = blend(image1[i][j], image2[i][j], alpha); //uses previous function
+			}
+		}
+		return blended;
 	}
 
 	/**
@@ -172,7 +166,14 @@ public class Runigram {
 	 * of the source image.
 	 */
 	public static void morph(Color[][] source, Color[][] target, int n) {
-		//// Replace this comment with your code
+		Color[][] temp = scaled(target, source[0].length, source.length); //so we dont change the original pic 
+
+		for (int i = 0; i < n; i++) {
+			double alpha = (double)(n - i) / n; //calculates alpha in each step
+			Color[][] morphed = blend(source, temp, alpha);
+			display(morphed);
+			StdDraw.pause(500); //500 milliseconds pause
+		}
 	}
 	
 	/** Creates a canvas for the given image. */

@@ -22,7 +22,7 @@ public class Editor2 {
 		Runigram.setCanvas(imageIn);
 		Runigram.display(imageIn);
 		StdDraw.pause(3000); 
-		Runigram.setCanvas(imageOut); //input and output have different size
+		Runigram.setCanvas(imageOut); //input and output arent the same size
 		Runigram.display(imageOut);		
 	}
 }
